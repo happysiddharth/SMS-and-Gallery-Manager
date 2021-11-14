@@ -47,7 +47,6 @@ class SMSRepository @Inject constructor(
                             cursor.getString(4),
                             cursor.getString(5),
                             cursor.getString(6).toIntOrNull(),
-                            R.color.purple_200
                         )
                     )
                 } while (cursor.moveToNext())
@@ -91,7 +90,6 @@ class SMSRepository @Inject constructor(
                             cursor.getString(4),
                             cursor.getString(5),
                             cursor.getString(6).toIntOrNull(),
-                            R.color.purple_500
                         )
                     )
                 } while (cursor.moveToNext())
@@ -137,7 +135,6 @@ class SMSRepository @Inject constructor(
                         cursor.getString(4),
                         cursor.getString(5),
                         cursor.getString(6).toIntOrNull(),
-                        R.color.purple_500
                     )
                 )
             }

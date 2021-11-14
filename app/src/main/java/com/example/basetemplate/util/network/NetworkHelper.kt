@@ -1,4 +1,4 @@
-package com.mindorks.bootcamp.instagram.utils.network
+package com.example.basetemplate.util.network
 
 import android.content.Context
 import android.net.ConnectivityManager

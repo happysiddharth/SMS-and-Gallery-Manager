@@ -1,4 +1,4 @@
-package com.mindorks.bootcamp.instagram.utils.network
+package com.example.basetemplate.util.network
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

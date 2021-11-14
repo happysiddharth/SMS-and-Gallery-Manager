@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.basetemplate.data.repository.MediaRepository
 import com.example.basetemplate.data.repository.UsersRepository
 import com.example.basetemplate.ui.base.BaseViewModel
-import com.mindorks.bootcamp.instagram.utils.network.NetworkHelper
+import com.example.basetemplate.util.network.NetworkHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

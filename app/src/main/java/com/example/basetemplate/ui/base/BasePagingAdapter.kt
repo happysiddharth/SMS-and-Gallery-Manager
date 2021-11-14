@@ -9,23 +9,24 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.basetemplate.util.log.Logger
 
-abstract class BasePagingAdapter<T:Any,VH:BaseItemViewHolder<T,out BaseItemViewModel<T>>>(
-    private val dataList:ArrayList<T>,
+abstract class BasePagingAdapter<T : Any, VH : BaseItemViewHolder<T, out BaseItemViewModel<T>>>(
     private val parentLifeCycle: Lifecycle,
     diffCallback: DiffUtil.ItemCallback<T>,
-): PagingDataAdapter<T, VH>(diffCallback) {
+) : PagingDataAdapter<T, VH>(diffCallback) {
 
-    private var recyclerView: RecyclerView?= null
+    private var recyclerView: RecyclerView? = null
+
     init {
         parentLifeCycle.addObserver(
             object : LifecycleObserver {
                 @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-                fun onParentDestroy(){
-                    recyclerView?.run{
-                        for (i in 0 until childCount){
-                            getChildAt(i).let{
-                                (getChildViewHolder(it) as BaseItemViewHolder<*,*>).run{
+                fun onParentDestroy() {
+                    recyclerView?.run {
+                        for (i in 0 until childCount) {
+                            getChildAt(i).let {
+                                (getChildViewHolder(it) as BaseItemViewHolder<*, *>).run {
                                     onDestroy()
                                     viewModel.onManualCleared()
                                 }
@@ -33,16 +34,19 @@ abstract class BasePagingAdapter<T:Any,VH:BaseItemViewHolder<T,out BaseItemViewM
                         }
                     }
                 }
+
                 @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-                fun onParentStop(){
-                    recyclerView?.run{
-                        if(layoutManager is LinearLayoutManager){
-                            val first = (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                            val last = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                            if (first in 0..last){
-                                for (i in first..last){
-                                    findViewHolderForAdapterPosition(i)?.let{
-                                        (it as BaseItemViewHolder<*,*>).onStop()
+                fun onParentStop() {
+                    recyclerView?.run {
+                        if (layoutManager is LinearLayoutManager) {
+                            val first =
+                                (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                            val last =
+                                (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                            if (first in 0..last) {
+                                for (i in first..last) {
+                                    findViewHolderForAdapterPosition(i)?.let {
+                                        (it as BaseItemViewHolder<*, *>).onStop()
                                     }
                                 }
                             }
@@ -51,11 +55,11 @@ abstract class BasePagingAdapter<T:Any,VH:BaseItemViewHolder<T,out BaseItemViewM
                 }
 
                 @OnLifecycleEvent(Lifecycle.Event.ON_START)
-                fun onParentStart(){
-                    recyclerView?.run{
-                        for (i in 0 until childCount){
-                            getChildAt(i).let{
-                                (getChildViewHolder(it) as BaseItemViewHolder<*,*>).run{
+                fun onParentStart() {
+                    recyclerView?.run {
+                        for (i in 0 until childCount) {
+                            getChildAt(i).let {
+                                (getChildViewHolder(it) as BaseItemViewHolder<*, *>).run {
                                     onStart()
                                 }
                             }
@@ -68,7 +72,9 @@ abstract class BasePagingAdapter<T:Any,VH:BaseItemViewHolder<T,out BaseItemViewM
 
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.setData(data = dataList[position])
+        getItem(position)?.let {
+            holder.setData(data = it)
+        }
     }
 
     override fun onViewAttachedToWindow(holder: VH) {

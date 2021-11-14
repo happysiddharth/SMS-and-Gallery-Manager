@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-//Generic class ->  we can pass data type as a variable
 abstract class BaseAdapter<T:Any,VH:BaseItemViewHolder<T,out BaseItemViewModel<T>>>(
     private val dataList:ArrayList<T>,
     private val parentLifeCycle:Lifecycle
@@ -34,6 +33,7 @@ abstract class BaseAdapter<T:Any,VH:BaseItemViewHolder<T,out BaseItemViewModel<T
                         }
                     }
                 }
+
                 @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
                 fun onParentStop(){
                     recyclerView?.run{
@@ -103,6 +103,4 @@ abstract class BaseAdapter<T:Any,VH:BaseItemViewHolder<T,out BaseItemViewModel<T
         super.onDetachedFromRecyclerView(recyclerView)
         this.recyclerView = null
     }
-
-
 }

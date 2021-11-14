@@ -1,14 +1,13 @@
 package com.example.basetemplate.ui.sms
 
 import android.app.Activity
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.basetemplate.data.model.SMS
 import com.example.basetemplate.data.repository.SMSRepository
 import com.example.basetemplate.ui.base.BaseViewModel
 import com.example.basetemplate.util.common.Resource
-import com.mindorks.bootcamp.instagram.utils.network.NetworkHelper
+import com.example.basetemplate.util.network.NetworkHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

@@ -1,10 +1,11 @@
 package com.example.basetemplate.ui.base
 
+import androidx.annotation.CallSuper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.basetemplate.R
 import com.example.basetemplate.util.common.Resource
-import com.mindorks.bootcamp.instagram.utils.network.NetworkHelper
+import com.example.basetemplate.util.network.NetworkHelper
 import io.reactivex.disposables.CompositeDisposable
 import javax.net.ssl.HttpsURLConnection
 
@@ -45,6 +46,7 @@ abstract class BaseViewModel(
             }
         }
 
+    @CallSuper
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()

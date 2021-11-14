@@ -4,13 +4,12 @@ import android.app.Activity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.basetemplate.data.repository.MediaRepository
-import com.example.basetemplate.data.repository.SMSRepository
+import com.example.basetemplate.data.remote.NetworkService
+import com.example.basetemplate.data.repository.UsersRepository
 import com.example.basetemplate.ui.base.BaseFragment
-import com.example.basetemplate.ui.sms.SmsViewModel
-import com.example.basetemplate.ui.gallery.GallaryViewModel
+import com.example.basetemplate.ui.user.UsersFragmentViewModel
 import com.example.basetemplate.util.ViewModelFactory
-import com.mindorks.bootcamp.instagram.utils.network.NetworkHelper
+import com.example.basetemplate.util.network.NetworkHelper
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -25,29 +24,20 @@ class FragmentModule(private val fragment:BaseFragment<*>) {
     fun provideGridLayoutManager(): GridLayoutManager = GridLayoutManager(fragment.context,2)
 
     @Provides
-    fun providesDashboardViewModel(
-        networkHelper: NetworkHelper,
-        smsRepository: SMSRepository,
-        compositeDisposable: CompositeDisposable
-    ):SmsViewModel =
-        ViewModelProviders.of(fragment,
-        ViewModelFactory(SmsViewModel::class){
-            SmsViewModel(networkHelper,fragment.requireActivity(),smsRepository,compositeDisposable)
-        }).get(SmsViewModel::class.java)
-
-    @Provides
-    fun galleryViewModel(
-        networkHelper: NetworkHelper,
-        mediaRepository: MediaRepository,
-        compositeDisposable: CompositeDisposable
-    ):GallaryViewModel =
-        ViewModelProviders.of(fragment,
-            ViewModelFactory(GallaryViewModel::class){
-                GallaryViewModel(networkHelper,fragment.requireActivity(),mediaRepository,compositeDisposable)
-            }).get(GallaryViewModel::class.java)
-
-    @Provides
     fun getActivity():Activity{
         return fragment.requireActivity()
     }
+
+    @Provides
+    fun getUsersViewModel(
+        networkHelper: NetworkHelper,
+        usersRepository: UsersRepository,
+        compositeDisposable: CompositeDisposable
+    ): UsersFragmentViewModel = ViewModelProviders.of(fragment,
+        ViewModelFactory(UsersFragmentViewModel::class){
+            UsersFragmentViewModel(compositeDisposable, networkHelper, usersRepository)
+        }).get(UsersFragmentViewModel::class.java)
+
+
+
 }

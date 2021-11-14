@@ -1,21 +1,15 @@
 package com.example.basetemplate.di.module
 
-import android.app.Activity
-import androidx.core.app.ActivityCompat
 import com.example.basetemplate.MyApplication
 import com.example.basetemplate.data.remote.NetworkService
 import com.example.basetemplate.data.remote.Networking
-import com.example.basetemplate.data.repository.SMSRepository
-import com.example.basetemplate.data.repository.UsersRepository
+import com.example.basetemplate.di.APIkey
 import com.example.basetemplate.di.ApplicationScope
-import com.example.basetemplate.di.Qualifiers
 import com.example.basetemplate.util.common.Permissions
-import com.mindorks.bootcamp.instagram.utils.network.NetworkHelper
+import com.example.basetemplate.util.network.NetworkHelper
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
-import java.io.File
-import javax.inject.Singleton
 
 @Module
 class ApplicationModule(private val application:MyApplication) {
@@ -25,10 +19,15 @@ class ApplicationModule(private val application:MyApplication) {
     fun provideNetworkHelper(): NetworkHelper = NetworkHelper(application)
 
     @ApplicationScope
+    @Provides
+    fun providesNetworkService():NetworkService = Networking.create(apiKey(),"https://api.tvmaze.com/"
+    ,application.cacheDir,502400)
+
+    @ApplicationScope
+    @APIkey
     fun apiKey():String = ""
 
     @ApplicationScope
-    @Qualifiers
     fun dbName():String = ""
 
 

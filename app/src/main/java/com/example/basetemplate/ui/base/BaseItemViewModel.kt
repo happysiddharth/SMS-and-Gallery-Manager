@@ -1,7 +1,7 @@
 package com.example.basetemplate.ui.base
 
 import androidx.lifecycle.MutableLiveData
-import com.mindorks.bootcamp.instagram.utils.network.NetworkHelper
+import com.example.basetemplate.util.network.NetworkHelper
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseItemViewModel<T:Any>(

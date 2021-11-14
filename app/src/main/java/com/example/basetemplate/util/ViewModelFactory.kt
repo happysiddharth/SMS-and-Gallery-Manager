@@ -2,7 +2,6 @@ package com.example.basetemplate.util
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.basetemplate.ui.gallery.GallaryViewModel
 import kotlin.reflect.KClass
 
 class ViewModelFactory<T:ViewModel>(

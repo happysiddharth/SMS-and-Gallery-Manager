@@ -1,4 +1,4 @@
-package com.mindorks.bootcamp.instagram.utils.common
+package com.example.basetemplate.util.common
 
 interface LoadMoreListener {
 

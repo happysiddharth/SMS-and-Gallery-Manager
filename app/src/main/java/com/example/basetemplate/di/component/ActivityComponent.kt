@@ -5,7 +5,7 @@ import com.example.basetemplate.di.module.ActivityModule
 import com.example.basetemplate.ui.base.BaseActivity
 import com.example.basetemplate.ui.main.HomeActivity
 import com.example.basetemplate.ui.main.HomeViewModel
-import com.mindorks.bootcamp.instagram.utils.network.NetworkHelper
+import com.example.basetemplate.util.network.NetworkHelper
 import dagger.Component
 
 @ActivityScope

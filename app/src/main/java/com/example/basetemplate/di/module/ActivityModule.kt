@@ -6,7 +6,7 @@ import com.example.basetemplate.di.ActivityScope
 import com.example.basetemplate.ui.base.BaseActivity
 import com.example.basetemplate.ui.main.HomeViewModel
 import com.example.basetemplate.util.ViewModelFactory
-import com.mindorks.bootcamp.instagram.utils.network.NetworkHelper
+import com.example.basetemplate.util.network.NetworkHelper
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
